@@ -60,10 +60,9 @@ export function processFile(file: string) {
 }
 
 export function mergeE621Tags(tagset: Record<string, string[]>): string[] {
-	const allTags = Object.values(tagset).reduce((acc, cur) => acc.concat(cur), []);
+	// const allTags = Object.values(tagset).reduce((acc, cur) => acc.concat(cur), []);
 
 	const tags = [
-		...allTags,
 		...tagset.artist,
 		...tagset.copyright,
 		...tagset.character,
