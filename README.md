@@ -8,7 +8,7 @@ Just run `npm install` after pulling this repo.
 
 ## makeQueue
 
-`npx ts-node processQueue.ts <directory>`
+`npx ts-node makeQueue.ts <directory>`
 
 This script takes a directory as an input, and will recursively scan that directory for all non-hidden files. It will create a file in the root of the project (`queue.json`) which will hold the file name and calculated md5 hash.
 
