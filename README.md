@@ -49,3 +49,6 @@ Stuff I would like to see added at some point:
 -   [ ] Add an actual CLI interface.
 -   [ ] Option to overwite or not overwrite existing files.
 -   [ ] Control where to put the tags file (currently it's always in the same directory as the image).
+-   [ ] Logging controls.
+-   [ ] Separate report on files that were not found on e621.
+-   [ ] Tests
