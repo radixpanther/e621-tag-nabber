@@ -89,9 +89,11 @@ async function processFileFromQueue() {
 			fs.mkdirSync(targetOutputDir, { recursive: true });
 		}
 
-		//copy file
-		writeToProcessLog(`Copying file: ${item.path} to ${targetOutputPath}`);
-		fs.copyFileSync(item.path, targetOutputPath);
+		//copy file (if it's not already there)
+		if (!fs.existsSync(targetOutputPath)) {
+			writeToProcessLog(`Copying file: ${item.path} to ${targetOutputPath}`);
+			fs.copyFileSync(item.path, targetOutputPath);
+		}
 
 		// write tags
 		let tagString = tags.join(', ');

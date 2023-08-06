@@ -12,6 +12,17 @@ export type QueueStucture = {
 	queue: QueueItem[];
 };
 
+export type E621Tagset = {
+	artist: string[];
+	character: string[];
+	species: string[];
+	general: string[];
+	invalid: string[];
+	meta: string[];
+	lore: string[];
+	copyright: string[];
+};
+
 export function processDirectory(dir: string, queue: QueueItem[] = []): QueueItem[] {
 	const dirs: string[] = [];
 	const files = fs.readdirSync(dir);
@@ -46,7 +57,6 @@ export function processDirectory(dir: string, queue: QueueItem[] = []): QueueIte
 }
 
 export function writeToProcessLog(log: string) {
-	// Overwrite existing log file
 	console.log(log);
 	fs.appendFileSync('process.log', `${log}\n`, { encoding: 'utf8', flag: 'a+' });
 }
@@ -56,12 +66,11 @@ export function processFile(file: string) {
 
 	const md5 = md5File.sync(file);
 	writeToProcessLog(`MD5 hash: ${md5} for file ${file}`);
+
 	return md5;
 }
 
-export function mergeE621Tags(tagset: Record<string, string[]>): string[] {
-	// const allTags = Object.values(tagset).reduce((acc, cur) => acc.concat(cur), []);
-
+export function mergeE621Tags(tagset: E621Tagset): string[] {
 	const tags = [
 		...tagset.artist,
 		...tagset.copyright,
@@ -71,5 +80,6 @@ export function mergeE621Tags(tagset: Record<string, string[]>): string[] {
 		...tagset.invalid,
 		...tagset.meta,
 	];
+
 	return [...new Set(tags)];
 }
