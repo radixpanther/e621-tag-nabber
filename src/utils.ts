@@ -36,8 +36,7 @@ export function processDirectory(dir: string, queue: QueueItem[] = []): QueueIte
 
 	if (dirs.length > 0) {
 		for (const dir of dirs) {
-			const items = processDirectory(dir, queue);
-			// queue = queue.concat(items);
+			processDirectory(dir, queue);
 		}
 	}
 

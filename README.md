@@ -20,3 +20,10 @@ This script will process the `queue.json` file. It will look for any images on e
 
 -   Copy the original image to the specified directory (mirroring the original directory structure).
 -   Create a file in the specified directory with the same name as the original file, but with a `.txt` extension and comma-separated tags.
+
+## TODO
+
+Stuff I would like to see added at some point:
+
+-   [ ] Add ability to target a specific file.
+-   [ ] Add an actual CLI interface.

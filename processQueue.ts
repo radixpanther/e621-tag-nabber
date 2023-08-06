@@ -71,6 +71,9 @@ async function processFileFromQueue() {
 		const post = md5result.data.posts[0];
 		if (!post) {
 			writeToProcessLog(`No data found on e621 for file: ${item.path} with md5: ${item.md5}`);
+			// Write the new queue to the file
+			writeToProcessLog(`Writing queue to file: ${QUEUE_FILE_PATH}`);
+			fs.writeFileSync(QUEUE_FILE_PATH, JSON.stringify(processQueue));
 			return;
 		}
 		const tags = mergeE621Tags(post.tags);
