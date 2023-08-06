@@ -60,9 +60,17 @@ export function processFile(file: string) {
 }
 
 export function mergeE621Tags(tagset: Record<string, string[]>): string[] {
-	//remove "artist" tag... This is to prevent
-	delete tagset.artist;
+	const allTags = Object.values(tagset).reduce((acc, cur) => acc.concat(cur), []);
 
-	const tags = Object.values(tagset).reduce((acc, cur) => acc.concat(cur), []);
+	const tags = [
+		...allTags,
+		...tagset.artist,
+		...tagset.copyright,
+		...tagset.character,
+		...tagset.species,
+		...tagset.general,
+		...tagset.invalid,
+		...tagset.meta,
+	];
 	return [...new Set(tags)];
 }
