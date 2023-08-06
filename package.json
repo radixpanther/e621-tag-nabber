@@ -1,13 +1,15 @@
 {
-	"scripts": {
-		"start": "ts-node src/index.ts"
+	"name": "e621-tag-nabber",
+	"author": {
+		"name": "Radix Panther",
+		"email": "radixpanther@pm.me"
 	},
+	"version": "0.1.0",
+	"license": "WTFPL",
 	"devDependencies": {
-		"ts-node": "^10.9.1"
-	},
-	"dependencies": {
 		"axios": "^1.4.0",
 		"dotenv": "^16.3.1",
-		"md5-file": "^5.0.0"
+		"md5-file": "^5.0.0",
+		"ts-node": "^10.9.1"
 	}
 }
