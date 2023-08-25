@@ -23,13 +23,27 @@ export type E621Tagset = {
 	copyright: string[];
 };
 
-export function processDirectory(dir: string, queue: QueueItem[] = []): QueueItem[] {
+// Only images by default
+const DEFAULT_FILE_FILTER = /(png|jpg|jpeg|gif|webp)$/i;
+
+export function processDirectory(
+	dir: string,
+	queue: QueueItem[] = [],
+	filter: RegExp = DEFAULT_FILE_FILTER,
+): QueueItem[] {
 	const dirs: string[] = [];
 	const files = fs.readdirSync(dir);
 
 	writeToProcessLog(`Processing directory: ${dir}`);
 
-	for (const file of files) {
+	// Filter if not in filter or is a directory
+	const filteredFiles = files.filter((file) => {
+		const fullPath = path.join(dir, file);
+		const stats = fs.statSync(fullPath);
+		return filter.test(path.extname(file)) || stats.isDirectory();
+	});
+
+	for (const file of filteredFiles) {
 		const fullPath = path.join(dir, file);
 		const stats = fs.statSync(fullPath);
 
@@ -47,7 +61,7 @@ export function processDirectory(dir: string, queue: QueueItem[] = []): QueueIte
 
 	if (dirs.length > 0) {
 		for (const dir of dirs) {
-			processDirectory(dir, queue);
+			processDirectory(dir, queue, filter);
 		}
 	}
 

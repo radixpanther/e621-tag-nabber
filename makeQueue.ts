@@ -19,10 +19,6 @@ if (!fs.existsSync(TARGET_DIR)) {
 
 fs.writeFileSync('process.log', '', { encoding: 'utf8', flag: 'w' });
 
-if (!fs.existsSync(QUEUE_FILE_PATH)) {
-	// fs.writeFileSync('queue.json', '{}', { encoding: 'utf8', flag: 'w' });
-}
-
 const queue = processDirectory(TARGET_DIR, []);
 
 fs.writeFileSync(QUEUE_FILE_PATH, JSON.stringify({ rootDir: TARGET_DIR, queue }));
